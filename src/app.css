@@ -1,0 +1,69 @@
+/* Tailwind and daisyUI utilities use tw:; product styles stay unprefixed. */
+@import 'tailwindcss' prefix(tw);
+@plugin 'daisyui' {
+  themes:
+    light --default,
+    dark --prefersdark;
+}
+
+/*
+ * One palette and shape scale for every page, in both themes. Surfaces are neutral grays so the
+ * covers carry the color. Primary actions use the text color itself; Hanamaru's amber is kept
+ * for small marks: reading progress, ratings, focus and the current selection.
+ */
+:root {
+  color-scheme: light dark;
+  --surface: light-dark(#ffffff, #18181b);
+  --surface-muted: light-dark(#f6f6f7, #111113);
+  --surface-raised: light-dark(#eeeef0, #222226);
+  --surface-hover: light-dark(#ececef, #26262b);
+  --border-subtle: light-dark(#e3e3e7, #2b2b31);
+  --border-strong: light-dark(#cfcfd6, #3d3d45);
+  --text: light-dark(#18181b, #ececef);
+  --text-muted: light-dark(#63636e, #a0a0ab);
+  --text-faint: light-dark(#8c8c96, #74747e);
+  --ink: light-dark(#18181b, #f4f4f5);
+  --ink-hover: light-dark(#2e2e33, #ffffff);
+  --ink-content: light-dark(#ffffff, #18181b);
+  --accent: light-dark(#d99a0b, #f0bd45);
+  --accent-text: light-dark(#8f6200, #f0bd45);
+  --accent-soft: light-dark(#fbf3df, #2f2918);
+  --danger: light-dark(#c4321f, #ff8a7a);
+  --favorite: light-dark(#d1335e, #ff7aa0);
+  --radius-control: 6px;
+  --radius-panel: 10px;
+  --radius-cover: 6px;
+  --radius-box: var(--radius-panel);
+  --radius-field: var(--radius-control);
+  --radius-selector: 4px;
+  --size-field: 0.225rem;
+  --dialog-padding: 20px;
+  --shadow-popover: 0 8px 24px rgb(0 0 0 / 0.14), 0 0 0 1px rgb(0 0 0 / 0.04);
+  --shadow-dialog: 0 24px 64px rgb(0 0 0 / 0.28);
+  --backdrop: rgb(9 9 11 / 0.6);
+  --header-height: 52px;
+  --color-base-100: var(--surface);
+  --color-base-200: var(--surface-muted);
+  --color-base-300: var(--border-subtle);
+  --color-base-content: var(--text);
+  --color-primary: var(--ink);
+  --color-primary-content: var(--ink-content);
+  --color-neutral: var(--surface-raised);
+  --color-neutral-content: var(--text);
+  --color-error: var(--danger);
+  --color-error-content: #ffffff;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+@media (max-width: 480px) {
+  :root {
+    --dialog-padding: 16px;
+  }
+}

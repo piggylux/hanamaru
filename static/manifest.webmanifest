@@ -1,0 +1,14 @@
+{
+  "name": "hanamaru",
+  "short_name": "hanamaru",
+  "description": "Organize and read your doujins",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#15171b",
+  "theme_color": "#1b1d22",
+  "icons": [
+    { "src": "/icon.svg", "type": "image/svg+xml", "sizes": "any" },
+    { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" }
+  ]
+}

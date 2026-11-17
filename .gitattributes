@@ -1,0 +1,3 @@
+# The formatter expects LF line endings, including on Windows checkouts
+* text=auto eol=lf
+*.png binary

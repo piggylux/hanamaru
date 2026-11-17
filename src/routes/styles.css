@@ -1,0 +1,306 @@
+/*
+ * Foundations shared by every route; component layouts live beside their markup. Element styles
+ * sit in the base layer, so daisyUI's components (a link styled as a button) still win over them.
+ */
+@layer base {
+  :root {
+    font-family:
+      'Segoe UI Variable Text', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Hiragino Sans',
+      'Yu Gothic UI', sans-serif;
+    font-synthesis: none;
+    line-height: 1.5;
+    color: var(--text);
+    background: var(--surface-muted);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    background: var(--surface-muted);
+    font-size: 14px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+
+  input[type='range'] {
+    accent-color: var(--ink);
+  }
+}
+
+/* daisyUI controls, flattened to match the rest of the interface */
+.tw\:btn {
+  gap: 6px;
+  border-radius: var(--radius-control);
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: none;
+  background-image: none;
+}
+
+.tw\:btn:not(.tw\:btn-primary, .tw\:btn-ghost, .tw\:btn-error) {
+  border-color: var(--border-strong);
+  background-color: var(--surface);
+  color: var(--text);
+}
+
+.tw\:btn:not(.tw\:btn-primary, .tw\:btn-ghost, .tw\:btn-error):hover {
+  background-color: var(--surface-hover);
+}
+
+.tw\:btn-primary:not(:disabled):hover {
+  border-color: var(--ink-hover);
+  background-color: var(--ink-hover);
+}
+
+.tw\:btn-ghost {
+  color: var(--text-muted);
+}
+
+.tw\:btn-ghost:hover {
+  border-color: transparent;
+  background-color: var(--surface-hover);
+  color: var(--text);
+}
+
+.tw\:btn-sm {
+  font-size: 13px;
+}
+
+.tw\:btn-xs {
+  font-size: 12px;
+}
+
+.tw\:input,
+.tw\:select,
+.tw\:textarea {
+  border-color: var(--border-strong);
+  background-color: var(--surface);
+  box-shadow: none;
+  font-size: 14px;
+}
+
+/* A quiet slider for settings like card size, rather than the filled native one */
+input[type='range'].slim {
+  height: 16px;
+  margin: 0;
+  background: transparent;
+  appearance: none;
+  cursor: pointer;
+}
+
+input[type='range'].slim::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 2px;
+  background: var(--border-strong);
+}
+
+input[type='range'].slim::-moz-range-track {
+  height: 3px;
+  border-radius: 2px;
+  background: var(--border-strong);
+}
+
+input[type='range'].slim::-webkit-slider-thumb {
+  width: 14px;
+  height: 14px;
+  margin-top: -5.5px;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.18);
+  appearance: none;
+}
+
+input[type='range'].slim::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.18);
+}
+
+/* Shared page structure */
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 32px 64px;
+}
+
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.page-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+/* A row of mutually exclusive choices, built on radio buttons */
+.segmented {
+  display: inline-flex;
+  padding: 2px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+}
+
+.segmented label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 30px;
+  padding: 0 10px;
+  border-radius: 4px;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.segmented input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.segmented label:has(input:checked) {
+  background: var(--surface-raised);
+  color: var(--text);
+}
+
+.segmented label:has(input:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* Tags: square-ish, quiet, and clearly clickable */
+.chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 2px 8px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.5;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+a.chip:hover {
+  border-color: var(--border-strong);
+  background: var(--surface-hover);
+}
+
+.chip .count {
+  color: var(--text-faint);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+kbd {
+  display: inline-grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 11px;
+}
+
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 16px;
+  z-index: 100;
+  padding: 10px 16px;
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-popover);
+  transform: translateY(-160%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+dialog.panel-dialog {
+  /* Tailwind's reset removes the browser's centering of modal dialogs; this puts it back */
+  margin: auto;
+  width: min(520px, calc(100vw - 32px));
+  max-height: calc(100dvh - 48px);
+  padding: 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-panel);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-dialog);
+}
+
+dialog.panel-dialog::backdrop {
+  background: var(--backdrop);
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 20px 16px 48px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
